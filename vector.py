@@ -18,23 +18,22 @@ if add_documents:
     documents = []
     ids = []
 
+    for i, row in df.iterrows():
 
-for i, row in df.iterrows():
+        document = Document(
+            page_content=row["Song"] + " " + row["Artist"] + " " +
+            row["Review"],
+            metadata={
+                "rating": row["Rating"],
+                "genre": row["Genre"],
+                "album": row["Album"],
+                "release_date": row["Release Date"]
+            },
+            id=str(i)
+        )
 
-    document = Document(
-        page_content=row["Song"] + " " + row["Artist"] + " " +
-        row["Review"],
-        metadata={
-            "rating": row["Rating"],
-            "genre": row["Genre"],
-            "album": row["Album"],
-            "release_date": row["Release Date"]
-        },
-        id=str(i)
-    )
-
-    ids.append(str(i))
-    documents.append(document)
+        ids.append(str(i))
+        documents.append(document)
 
 
 vector_store = Chroma(
