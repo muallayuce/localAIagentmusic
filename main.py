@@ -7,9 +7,9 @@ model = OllamaLLM(model="llama3.2")
 
 
 template = """
-You are an expert in recommending music based on user preferences.
+You are an expert in recommending music based on user preferences and moods.
 
-Here are some relevant song reviews and details: {reviews}
+Here are some relevant songs and their details: {songs_data}
 
 Here is the question to answer: {question}
 """
@@ -24,6 +24,6 @@ while True:
     if question.lower() == "q":
         break
 
-    reviews = retriever.invoke(question)
-    result = chain.invoke({"reviews": reviews, "question": question})
+    songs_data = retriever.invoke(question)
+    result = chain.invoke({"songs_data": songs_data, "question": question})
     print(result)

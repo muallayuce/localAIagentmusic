@@ -22,7 +22,7 @@ if add_documents:
 
         document = Document(
             page_content=row["Song"] + " " + row["Artist"] + " " +
-            row["Review"],
+            row["Genre"] + " " + row["Album"] + " " + str(row["Release Date"]),
             metadata={
                 "rating": row["Rating"],
                 "genre": row["Genre"],
